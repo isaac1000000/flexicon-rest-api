@@ -18,13 +18,13 @@ public class RelId {
     /**
      * The id of the base {@link Word} of the relation.
      */
-    @Column(name="baseId")
+    @Column(name="baseId", insertable=false, updatable=false)
     private Long baseId;
 
     /**
      * The id of the target {@link Word} of the relation.
      */
-    @Column(name="targetId")
+    @Column(name="targetId", insertable=false, updatable=false)
     private Long targetId;
 
     /**
@@ -65,4 +65,9 @@ public class RelId {
     }
 
     public RelId() { }
+
+    public RelId(Long baseId, Long targetId) {
+        this.baseId = baseId;
+        this.targetId = targetId;
+    }
 }

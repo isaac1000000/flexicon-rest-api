@@ -6,6 +6,12 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import org.springframework.data.annotation.Immutable;
 
+import java.nio.ByteOrder;
+import java.nio.charset.StandardCharsets;
+import java.nio.ByteBuffer;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
 /**
  * A word corresponding to a row in the <code>word</code> in the flexicon database.
  *
@@ -57,7 +63,21 @@ public class Word {
      * @return <code>word</code>'s id hash (not guaranteed to be in the word dataset)
      */
     public static Long toId(String word) {
-        return null;
+        byte[] wordAsBytes = word.getBytes(StandardCharsets.UTF_8);
+        MessageDigest md;
+        try {
+            md = MessageDigest.getInstance("MD5");
+        } catch (NoSuchAlgorithmException _) {
+            System.err.println("Current JVM does not contain MD5 algorithm");
+            return null;
+        }
+        md.update(wordAsBytes);
+
+        // Apply md5 to byte[]of word
+        byte[] digest = md.digest();
+
+        // Get long from byte[]
+        return ByteBuffer.wrap(digest, 0, 8).order(ByteOrder.BIG_ENDIAN).getLong();
     }
 
     public Long getId() {
