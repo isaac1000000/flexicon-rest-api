@@ -29,7 +29,8 @@ public interface RelRepository extends ReadOnlyRepository<Rel, RelId>, PagingAnd
     @Query(value="select r from Rel r" +
             " where :baseId=r.id.baseId" +
             " and r.strength between :strengthMin and :strengthMax" +
-            " and r.target.frequency between :frequencyMin and :frequencyMax")
+            " and r.target.frequency between :frequencyMin and :frequencyMax" +
+            " order by r.strength desc")
     public Page<Rel> findRelsByBaseIdStrengthAndFrequency(Long baseId, Double strengthMin, Double strengthMax,
                                                          Double frequencyMin, Double frequencyMax, Pageable pageable);
 
