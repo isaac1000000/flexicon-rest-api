@@ -13,7 +13,6 @@ class MapperTest {
 
     @Test
     void givenRel_whenConvertedToDTO_thenReturnExpectedDTOInstance() {
-
     }
 
     @Test

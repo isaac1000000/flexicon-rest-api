@@ -9,6 +9,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * A service layer application for the {@link Rel} class and rel dataset.
@@ -77,10 +78,33 @@ public class RelService {
      *
      * @see #findRelsByBaseIdStrengthAndFrequency(Long, Double, Double, Double, Double, int, int, String, boolean)
      */
-    public List<RelDTO> findRelsByBaseIdStrengthAndFrequency(Long baseId, Double minStrength, Double maxStrength,
+    public List<RelDTO> findRelByBaseIdStrengthAndFrequency(Long baseId, Double minStrength, Double maxStrength,
                                                              Double minFrequency, Double maxFrequency, int index) {
         return findRelsByBaseIdStrengthAndFrequency(baseId, minStrength, maxStrength, minFrequency, maxFrequency, index,
                 1, "strength", true);
+    }
+
+    /**
+     * Finds the strongest relation for the given base word within the target frequency range
+     *
+     * @param baseId the id of the base word of the relation
+     * @param minFrequency the minimum acceptable value for the frequency of the target word
+     * @param maxFrequency the maximum acceptable value for the frequency of the target word
+     * @return a single {@link Rel} with the highest strength value within the given constraints
+     * @see #findRelsByBaseIdStrengthAndFrequency(Long, Double, Double, Double, Double, int, int, String, boolean)
+     */
+    public Optional<RelDTO> findStrongestRelByBaseIdAndFrequency(Long baseId, Double minFrequency, Double maxFrequency) {
+        List<RelDTO> resultAsList = findRelsByBaseIdStrengthAndFrequency(baseId, 0.0, 1.0, minFrequency, maxFrequency, 0, 1, "strength", true);
+        return Optional.of(resultAsList.getFirst());
+    }
+
+    /**
+     * Behaves like {@link #findStrongestRelByBaseIdAndFrequency(Long, Double, Double)} but assumes a target frequency range of 0.0 <= f <= 1.0
+     *
+     * @see #findStrongestRelByBaseIdAndFrequency(Long, Double, Double)
+     */
+    public Optional<RelDTO> findStrongestRelByBaseId(Long baseId) {
+        return findStrongestRelByBaseIdAndFrequency(baseId, 0.0, 1.0);
     }
 
     public RelService() { }
