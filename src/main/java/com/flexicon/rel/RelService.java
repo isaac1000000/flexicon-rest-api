@@ -15,6 +15,9 @@ import java.util.Optional;
  * A service layer application for the {@link Rel} class and rel dataset.
  *
  * @author isaac1000000
+ * @see RelController
+ * @see RelRepository
+ * @see Rel
  */
 @Service
 public class RelService {
@@ -69,6 +72,18 @@ public class RelService {
                                                              Double minFrequency, Double maxFrequency,
                                                              int index, int quantity) {
         return findRelsByBaseIdStrengthAndFrequency(baseId, minStrength, maxStrength, minFrequency, maxFrequency, index,
+                quantity, "strength", true);
+    }
+
+    /**
+     * Behaves like {@link #findRelsByBaseIdStrengthAndFrequency(Long, Double, Double, Double, Double, int, int, String, boolean)}
+     * but assumes descending sorting on the "strength" column and <code>0</code> for the index.
+     *
+     * @see #findRelsByBaseIdStrengthAndFrequency(Long, Double, Double, Double, Double, int, int, String, boolean)
+     */
+    public List<RelDTO> findRelsByBaseIdStrengthAndFrequency(Long baseId, Double minStrength, Double maxStrength,
+                                                             Double minFrequency, Double maxFrequency, int quantity) {
+        return findRelsByBaseIdStrengthAndFrequency(baseId, minStrength, maxStrength, minFrequency, maxFrequency, 0,
                 quantity, "strength", true);
     }
 

@@ -19,6 +19,7 @@ import java.util.List;
  * The REST controller for all requests related to rels.
  *
  * @author isaac1000000
+ * @see RelService
  */
 @RestController
 @RequestMapping("/api/rels")
