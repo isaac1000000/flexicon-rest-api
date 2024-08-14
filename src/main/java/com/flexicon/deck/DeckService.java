@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * A service layer application for the {@link Deck} class.
@@ -72,5 +73,15 @@ public class DeckService {
 
         fillDeck(deck, baseId, minStrength, maxStrength, minFrequency, maxFrequency, quantity);
         return deck;
+    }
+
+    /**
+     * Finds a deck by the given id.
+     *
+     * @param id the id to search for
+     * @return a nullable {@link Deck} instance
+     */
+    public Optional<Deck> findById(Long id) {
+        return deckRepository.findById(id);
     }
 }

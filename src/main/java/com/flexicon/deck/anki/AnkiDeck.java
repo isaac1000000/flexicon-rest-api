@@ -22,7 +22,7 @@ import java.io.IOException;
  */
 @Entity
 @Table(name="decks")
-@DiscriminatorValue("anki")
+@DiscriminatorValue("ANKI")
 public class AnkiDeck extends Deck<AnkiCard> {
 
     private static final Extension DEFAULT_EXT = Extension.TXT;
@@ -34,11 +34,8 @@ public class AnkiDeck extends Deck<AnkiCard> {
     public void export() {
         this.size = this.getCardList().size();
 
-        System.out.println(this.getId());
-
         try {
-            File deckFile = new File("/flexicon/" + DECK_DIRECTORY, this.getFilepath());
-            System.out.println(deckFile.getAbsolutePath());
+            File deckFile = new File(DECK_DIRECTORY, this.getFilepath());
             if (deckFile.createNewFile()) {
                 System.out.println("New file created at path: " + this.getFilepath());
             } else {
