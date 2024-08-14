@@ -1,15 +1,14 @@
 package com.flexicon.data;
 
-import java.util.NoSuchElementException;
-import java.util.Optional;
-
+import com.flexicon.data.exception.ReassignmentMappingFailureException;
 import com.flexicon.rel.Rel;
 import com.flexicon.rel.RelDTO;
 import com.flexicon.rel.RelId;
 import com.flexicon.rel.RelRepository;
-import com.flexicon.data.exception.ReassignmentMappingFailureException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import java.util.NoSuchElementException;
 
 /**
  * A class for mapping to and from DTOs.

@@ -1,7 +1,5 @@
 package com.flexicon.deck;
 
-import com.flexicon.rel.RelDTO;
-
 /**
  * An interface for a card-type object.
  *

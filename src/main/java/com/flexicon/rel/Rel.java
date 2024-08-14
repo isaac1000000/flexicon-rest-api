@@ -1,19 +1,8 @@
 package com.flexicon.rel;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.EmbeddedId;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
-import jakarta.persistence.Index;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.JoinColumn;
-
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
-import org.springframework.data.annotation.Immutable;
-
 import com.flexicon.word.Word;
+import jakarta.persistence.*;
+import org.springframework.data.annotation.Immutable;
 
 /**
  * A relation corresponding to a row from the rels dataset.

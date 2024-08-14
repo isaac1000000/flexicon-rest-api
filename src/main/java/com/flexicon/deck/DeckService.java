@@ -71,6 +71,11 @@ public class DeckService {
                 throw new IllegalStateException("Unexpected value for type: " + DeckType.valueOf(type));
         }
 
+        deck.setMinStrength(minStrength);
+        deck.setMaxStrength(maxStrength);
+        deck.setMinFrequency(minFrequency);
+        deck.setMaxFrequency(maxFrequency);
+
         fillDeck(deck, baseId, minStrength, maxStrength, minFrequency, maxFrequency, quantity);
         return deck;
     }

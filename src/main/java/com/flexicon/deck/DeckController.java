@@ -1,5 +1,7 @@
 package com.flexicon.deck;
 
+import com.flexicon.data.exception.FileRetrievalException;
+import com.flexicon.deck.exception.DeckDoesNotExistException;
 import com.flexicon.word.WordRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
@@ -13,8 +15,6 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 import static com.flexicon.deck.Deck.DECK_DIRECTORY;
-import com.flexicon.deck.exception.DeckDoesNotExistException;
-import com.flexicon.data.exception.FileRetrievalException;
 
 
 /**

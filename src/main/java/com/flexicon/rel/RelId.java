@@ -1,9 +1,8 @@
 package com.flexicon.rel;
 
+import com.flexicon.word.Word;
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
-
-import com.flexicon.word.Word;
 
 /**
  * The compound key used to index {@link Rel} instances.
