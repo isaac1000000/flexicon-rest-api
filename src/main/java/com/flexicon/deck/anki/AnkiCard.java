@@ -59,7 +59,7 @@ public class AnkiCard implements Card {
     public String exportToString(Extension extension) {
         switch (extension) {
             case TXT:
-                return this.front + "; " + this.back;
+                return this.front + ";\"" + this.back + "\"";
             case APKG:
                 // Not yet implemented
                 return "";
